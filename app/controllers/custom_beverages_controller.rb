@@ -1,7 +1,12 @@
 class CustomBeverages < ApplicationController
 
   get '/custombeverages' do
-    erb :"custom_beverages"
+    if !!logged_in?
+      erb :'custom_beverages'
+    else
+      redirect to '/login'
+    end
+
   end
 
 end
