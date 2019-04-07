@@ -1,6 +1,6 @@
 <p><strong> <%= @beverage.title %> </strong></p>
 <br>
-<p> <%= @beverage.title %> </p>
+<p> <%= @beverage.content %> </p>
 
 <form method="post" action="/custombeverages/<%=@beverage.slug%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
