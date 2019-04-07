@@ -5,7 +5,7 @@ class CustomBeverages < ApplicationController
       if params[:content] == "" || params[:title] == ""
         redirect to '/custombeverages/new'
       else
-        @userbeverages = current_user.custombeverage.create(title: params[:title], content: params[:content])
+        @beverages = current_user.custom_beverages.create(title: params[:title], content: params[:content])
         redirect to '/custombeverages'
       end
     else
