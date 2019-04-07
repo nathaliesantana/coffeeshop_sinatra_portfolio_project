@@ -53,6 +53,24 @@ class CustomBeverages < ApplicationController
     end
   end
 
+  patch '/custombeverages/:slug' do
+    if !!logged_in?
+      if params[:content] == "" || params[:title] == ""
+        redirect to '/custombeverages/#{params[:slug]}/edit'#Double check this
+      else
+        @beverage = CustomBeverage.find_by_slug(params[:slug])
+        if @beverage && @beverage.user == current_user
+          @beverage.update(content: params[:content], title: params[:title])
+          redirect to '/custombeverages/#{@beverage.id}'
+        else
+          redirect to '/custombeverages'
+        end
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
 
 
 end
