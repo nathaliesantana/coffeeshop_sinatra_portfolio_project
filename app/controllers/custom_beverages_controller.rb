@@ -5,7 +5,7 @@ class CustomBeverages < ApplicationController
       if params[:content] == "" || params[:title] == ""
         redirect to '/custombeverages/new'
       else
-        @userbeverages = current_user.custom_beverage.create(title: params[:title], content: params[:content])
+        @beverages = current_user.custom_beverages.create(title: params[:title], content: params[:content])
         redirect to '/custombeverages'
       end
     else
@@ -61,7 +61,7 @@ class CustomBeverages < ApplicationController
         @beverage = CustomBeverage.find_by_slug(params[:slug])
         if @beverage && @beverage.user == current_user
           @beverage.update(content: params[:content], title: params[:title])
-          redirect to '/custombeverages/#{@beverage.id}'
+          redirect to '/custombeverages/#{@beverage.slug}'
         else
           redirect to '/custombeverages'
         end
