@@ -5,7 +5,7 @@ class CustomBeverages < ApplicationController
       if params[:content] == "" || params[:title] == ""
         redirect to '/custombeverages/new'
       else
-        @beverages = current_user.custom_beverages.create(title: params[:title], content: params[:content])
+        @userbeverages = current_user.custom_beverage.create(title: params[:title], content: params[:content])
         redirect to '/custombeverages'
       end
     else
@@ -30,5 +30,29 @@ class CustomBeverages < ApplicationController
       redirect to '/login'
     end
   end
+
+  get "/custombeverages/:slug" do
+   if !!logged_in?
+     @beverage = CustomBeverage.find_by_slug(params[:slug])
+     erb :'show_custom_beverage'
+   else
+     redirect to '/login'
+   end
+  end
+
+  get '/custombeverages/:slug/edit' do
+    if !!logged_in?
+      @beverage = CustomBeverage.find_by_slug(params[:slug])
+      if @beverage && @beverage.user == current_user
+        erb :'edit_custom_beverage'
+      else
+        redirect to '/'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+
 
 end
