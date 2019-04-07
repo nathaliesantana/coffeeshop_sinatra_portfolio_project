@@ -4,7 +4,9 @@
 
 <% @user.custom_beverages.each do |beverage|%>
   <ul>
-   <%= beverage.title %>
+    <a href="/custombeverages/<%=beverage.slug%>">
+      <%= beverage.title %>
+    </a>
   </ul>
 <%end%>
 
