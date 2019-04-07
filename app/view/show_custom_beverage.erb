@@ -2,4 +2,9 @@
 <br>
 <p> <%= @beverage.title %> </p>
 
+<form method="post" action="/custombeverages/<%=@beverage.slug%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Beverage">
+</form>
+
 <a href="/custombeverages/<%=@beverage.slug%>/edit">Edit beverage</a>

@@ -71,6 +71,16 @@ class CustomBeverages < ApplicationController
     end
   end
 
-
+  delete '/custombeverages/:slug/delete' do
+    if !!logged_in?
+      @beverage = CustomBeverage.find_by_slug(params[:slug])
+      if @beverage && @beverage.user == current_user
+        @beverage.delete
+      end
+      redirect to '/custombeverages'
+    else
+      redirect to '/login'
+    end
+  end
 
 end
