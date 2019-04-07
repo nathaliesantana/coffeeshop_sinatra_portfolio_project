@@ -61,9 +61,9 @@ class CustomBeverages < ApplicationController
         @beverage = CustomBeverage.find_by_slug(params[:slug])
         if @beverage && @beverage.user == current_user
           @beverage.update(content: params[:content], title: params[:title])
-          redirect to '/custombeverages/#{@beverage.slug}'
-        else
           redirect to '/custombeverages'
+        else
+          redirect to '/'
         end
       end
     else
