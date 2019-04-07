@@ -15,12 +15,20 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/login' do
-    erb :'login'
+  get '/signup' do
+    if !logged_in?
+      erb:'signup'
+    else
+      redirect '/custombeverages'
+    end
   end
 
-  get '/signup' do
-    erb :'signup'
+  get '/login' do
+    if !logged_in?
+      erb:'login'
+    else
+      redirect '/custombeverages'
+    end
   end
 
   get '/logout' do
