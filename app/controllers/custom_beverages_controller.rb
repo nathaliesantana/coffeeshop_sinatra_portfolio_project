@@ -1,5 +1,18 @@
 class CustomBeverages < ApplicationController
 
+  post '/custombeverages' do
+    if !!logged_in?
+      if params[:content] == "" || params[:title] == ""
+        redirect to '/custombeverages/new'
+      else
+        @userbeverages = current_user.custombeverage.create(title: params[:title], content: params[:content])
+        redirect to '/custombeverages'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
   get '/custombeverages' do
     if !!logged_in?
       @user = current_user
