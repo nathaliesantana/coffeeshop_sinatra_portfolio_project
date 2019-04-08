@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
 
   post '/signup' do
-    @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-    redirect'/custombeverages' #a list of all users beverages.
+    if params[:username] == '' || params[:email] == '' || params[:password] == ''
+      redirect'/signup'
+    else
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      session[:user_id] = @user.id
+      redirect'/custombeverages'
+    end
   end
 
   post '/login' do
@@ -35,7 +40,7 @@ class UsersController < ApplicationController
 
     if !!logged_in?
       session.destroy
-      redirect'/login'
+      redirect'/'
     else
       redirect'/'
     end
