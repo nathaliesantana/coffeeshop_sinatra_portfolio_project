@@ -1,14 +1,14 @@
 <h2> Hi <%= @user.username.titleize %>, here are your recipes:</h2>
 
 <a href="/custombeverages/new">New Beverage</a>
-
+<br>
 <% @user.custom_beverages.each do |beverage|%>
-  <ul>
+  <ol>
     <a href="/custombeverages/<%=beverage.slug%>">
       <%= beverage.title %>
     </a>
-  </ul>
+  </ol>
 <%end%>
-
+<br>
 <a href="/logout">Logout</a><br>
 <a href="/">Home</a>
