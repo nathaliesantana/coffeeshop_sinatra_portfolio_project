@@ -2,12 +2,13 @@
 
 <a href="/custombeverages/new">New Beverage</a>
 <br>
+<br>
 <% @user.custom_beverages.each do |beverage|%>
-  <ol>
+  <li>
     <a href="/custombeverages/<%=beverage.slug%>">
       <%= beverage.title %>
     </a>
-  </ol>
+  </li>
 <%end%>
 <br>
 <a href="/logout">Logout</a><br>
