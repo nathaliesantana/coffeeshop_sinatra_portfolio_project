@@ -1,5 +1,4 @@
-<p><strong> <%= @beverage.title %> </strong></p>
-<br>
+<h2> <%= @beverage.title.titleize %> </h2>
 <p> <%= @beverage.content %> </p>
 
 <form method="post" action="/custombeverages/<%=@beverage.slug%>/delete">
