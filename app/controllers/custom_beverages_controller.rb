@@ -31,18 +31,18 @@ class CustomBeverages < ApplicationController
     end
   end
 
-  get "/custombeverages/:slug" do
+  get "/custombeverages/:id" do
    if !!logged_in?
-     @beverage = CustomBeverage.find_by_slug(params[:slug])
+     @beverage = CustomBeverage.find_by_id(params[:id])
      erb :'show_custom_beverage'
    else
      redirect to '/login'
    end
   end
 
-  get '/custombeverages/:slug/edit' do
+  get '/custombeverages/:id/edit' do
     if !!logged_in?
-      @beverage = CustomBeverage.find_by_slug(params[:slug])
+      @beverage = CustomBeverage.find_by_id(params[:id])
       if @beverage && @beverage.user == current_user
         erb :'edit_custom_beverage'
       else
@@ -53,12 +53,12 @@ class CustomBeverages < ApplicationController
     end
   end
 
-  patch '/custombeverages/:slug' do
+  patch '/custombeverages/:id' do
     if !!logged_in?
       if params[:content] == "" || params[:title] == ""
-        redirect to '/custombeverages/#{params[:slug]}/edit'#Double check this
+        redirect to '/custombeverages/#{params[:id]}/edit'#Double check this
       else
-        @beverage = CustomBeverage.find_by_slug(params[:slug])
+        @beverage = CustomBeverage.find_by_id(params[:id])
         if @beverage && @beverage.user == current_user
           @beverage.update(content: params[:content], title: params[:title])
           redirect to '/custombeverages'
@@ -71,9 +71,9 @@ class CustomBeverages < ApplicationController
     end
   end
 
-  delete '/custombeverages/:slug/delete' do
+  delete '/custombeverages/:id/delete' do
     if !!logged_in?
-      @beverage = CustomBeverage.find_by_slug(params[:slug])
+      @beverage = CustomBeverage.find_by_id(params[:id])
       if @beverage && @beverage.user == current_user
         @beverage.delete
       end
