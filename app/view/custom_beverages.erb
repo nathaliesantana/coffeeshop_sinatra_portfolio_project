@@ -5,7 +5,7 @@
 <br>
 <% @user.custom_beverages.each do |beverage|%>
   <li>
-    <a href="/custombeverages/<%=beverage.slug%>">
+    <a href="/custombeverages/<%=beverage.id%>">
       <%= beverage.title %>
     </a>
   </li>
