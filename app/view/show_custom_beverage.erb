@@ -1,12 +1,12 @@
 <h2> <%= @beverage.title.titleize %> </h2>
 <p> <%= @beverage.content %> </p>
 
-<form method="post" action="/custombeverages/<%=@beverage.slug%>/delete">
+<form method="post" action="/custombeverages/<%=@beverage.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Beverage">
 </form>
 
-<a href="/custombeverages/<%=@beverage.slug%>/edit">Edit beverage</a>
+<a href="/custombeverages/<%=@beverage.id%>/edit">Edit beverage</a>
 <br>
 <br>
 <a href="/custombeverages">My Beverages</a><br>
