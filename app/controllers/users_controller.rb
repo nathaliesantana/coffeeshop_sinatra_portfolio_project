@@ -1,9 +1,14 @@
+require 'rack-flash'
 class UsersController < ApplicationController
+  enable :sessions
+  use Rack::Flash
 
   post '/signup' do
     if params[:username] == '' || params[:email] == '' || params[:password] == ''
+      flash[:message] = "Please fill all the blank spaces."
       redirect'/signup'
     elsif User.all.any? { |e| e.email.include?(params[:email])}
+      flash[:message] = "This email already exists, please log in."
       redirect'/login'
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
